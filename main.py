@@ -40,3 +40,16 @@ sp = Spotify(auth_manager=SpotifyOAuth(client_id=SPOTIFY_ID,
                                        cache_path="token.txt"))
 
 user_id = sp.current_user()["id"]
+
+# Get the songs URI in spotify
+spotify_song = []
+year = date.split("-")[0]
+for song in songs:
+    result = sp.search(q=f"track:{song} year:{year}", type="track")
+    try:
+        uri = result["tracks"]["items"][0]["uri"]
+        spotify_song.append(uri)
+    except IndexError:
+        print(f"Skipping this {song}, it doesn't exist in Spotify.")
+
+print(spotify_song)
