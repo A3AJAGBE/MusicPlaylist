@@ -29,7 +29,6 @@ data = response.text
 soup = BeautifulSoup(data, "html.parser")
 song_list = soup.find_all(name="span", class_="chart-element__information__song")
 songs = [song.getText() for song in song_list]
-print(songs)
 
 # Authenticate Spotify
 sp = Spotify(auth_manager=SpotifyOAuth(client_id=SPOTIFY_ID,
@@ -52,4 +51,6 @@ for song in songs:
     except IndexError:
         print(f"Skipping this {song}, it doesn't exist in Spotify.")
 
-print(spotify_song)
+# Create a playlist on spotify
+playlist = sp.user_playlist_create(user=user_id, name=f"{date} Throwback", public=False)
+
