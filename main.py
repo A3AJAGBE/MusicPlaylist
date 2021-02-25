@@ -54,3 +54,5 @@ for song in songs:
 # Create a playlist on spotify
 playlist = sp.user_playlist_create(user=user_id, name=f"{date} Throwback", public=False)
 
+# Add the songs to the playlist
+sp.playlist_add_items(playlist_id=playlist["id"], items=spotify_song)
