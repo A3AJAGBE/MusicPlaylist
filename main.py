@@ -49,7 +49,7 @@ for song in songs:
         uri = result["tracks"]["items"][0]["uri"]
         spotify_song.append(uri)
     except IndexError:
-        print(f"Skipping this {song}, it doesn't exist in Spotify.")
+        print(f"Skipping the song: {song}, it doesn't exist in Spotify.")
 
 # Create a playlist on spotify
 playlist = sp.user_playlist_create(user=user_id, name=f"{date} Throwback", public=False)
